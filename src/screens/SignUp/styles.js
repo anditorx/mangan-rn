@@ -47,6 +47,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 35,
   },
+  // Sign Up Success
+  containerSuccess: {
+    backgroundColor: colors.white,
+    paddingHorizontal: 24,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  titleSignUpSuccess: {
+    fontSize: 24,
+    fontFamily: fonts.Medium,
+  },
+  subTitleSignUpSuccess: {
+    fontSize: 14,
+    fontFamily: fonts.Light,
+  },
+  containerButtonFindFoods: {
+    width: '100%',
+    paddingVertical: 25,
+    paddingHorizontal: 50,
+  },
 });
 
 export {styles};

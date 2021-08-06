@@ -44,7 +44,11 @@ const SignUpAddress = ({navigation}) => {
           <Gap height={24} />
         </View>
         <View style={styles.wrapperButtonSignUp}>
-          <Button textButton="Sign Up, Now" color={colors.primary} />
+          <Button
+            textButton="Sign Up, Now"
+            color={colors.primary}
+            onPress={() => navigation.replace('SignUpSuccess')}
+          />
         </View>
       </SafeAreaView>
     </>

@@ -1,7 +1,13 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-import {SplashScreen, SignIn, SignUp, SignUpAddress} from '../screens';
+import {
+  SplashScreen,
+  SignIn,
+  SignUp,
+  SignUpAddress,
+  SignUpSuccess,
+} from '../screens';
 
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -28,6 +34,11 @@ const Router = () => {
       <Stack.Screen
         name="SignUpAddress"
         component={SignUpAddress}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SignUpSuccess"
+        component={SignUpSuccess}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
