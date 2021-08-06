@@ -24,6 +24,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
+  textButtonNoContainer: {
+    color: colors.black,
+    fontFamily: fonts.Regular,
+    fontSize: 12,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+  },
 });
 
 export {styles};

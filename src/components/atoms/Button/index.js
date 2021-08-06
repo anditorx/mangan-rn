@@ -20,7 +20,7 @@ const Button = ({
   if (noContainer) {
     return (
       <TouchableOpacity onPress={onPress}>
-        <Text style={styles.textButton(fontColor)}>{textButton}</Text>
+        <Text style={styles.textButtonNoContainer}>{textButton}</Text>
       </TouchableOpacity>
     );
   }

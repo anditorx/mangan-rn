@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-import {SplashScreen, SignIn} from '../screens';
+import {SplashScreen, SignIn, SignUp} from '../screens';
 
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -18,6 +18,11 @@ const Router = () => {
       <Stack.Screen
         name="SignIn"
         component={SignIn}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

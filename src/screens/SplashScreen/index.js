@@ -8,7 +8,7 @@ const SplashScreen = ({navigation}) => {
     setTimeout(() => {
       navigation.replace('SignIn');
     }, 2000);
-  }, []);
+  }, [navigation]);
 
   return (
     <>

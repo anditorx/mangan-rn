@@ -7,6 +7,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 30,
     paddingBottom: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   title: {
     fontSize: 22,
@@ -17,6 +19,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: fonts.Light,
     color: colors.darkGrey,
+  },
+  wrapperIcBack: {
+    padding: 16,
+    marginRight: 16,
+    marginLeft: -16,
   },
 });
 

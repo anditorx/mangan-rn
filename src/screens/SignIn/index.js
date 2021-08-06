@@ -4,7 +4,7 @@ import {Header, TextInput, Button, Gap} from '../../components';
 import {colors} from '../../res';
 import {styles} from './styles.js';
 
-const SignIn = () => {
+const SignIn = ({navigation}) => {
   return (
     <>
       <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
@@ -26,6 +26,7 @@ const SignIn = () => {
           <Button textButton="Sign In" color={colors.primary} />
           <Gap height={24} />
           <Button
+            onPress={() => navigation.navigate('SignUp')}
             textButton="Create New Account"
             noContainer
             color={colors.white}
