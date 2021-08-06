@@ -4,7 +4,7 @@ import {colors, fonts} from '../../../res';
 const styles = StyleSheet.create({
   container: color => ({
     backgroundColor: color ? color : colors.primary,
-    padding: 8,
+    padding: 12,
     borderRadius: 12,
   }),
   textButton: fontColor => ({

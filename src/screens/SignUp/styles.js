@@ -42,6 +42,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  wrapperButtonSignUp: {
+    backgroundColor: colors.white,
+    paddingHorizontal: 24,
+    paddingBottom: 35,
+  },
 });
 
 export {styles};

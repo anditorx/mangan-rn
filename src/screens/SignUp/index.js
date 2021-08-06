@@ -47,7 +47,11 @@ const SignUp = ({navigation}) => {
             placeholder="Input Your Password"
           />
           <Gap height={24} />
-          <Button textButton="Continue" color={colors.primary} />
+          <Button
+            textButton="Continue"
+            onPress={() => navigation.navigate('SignUpAddress')}
+            color={colors.primary}
+          />
           <Gap height={24} />
           <Button
             onPress={() => navigation.pop()}
