@@ -4,12 +4,13 @@ import {Text, View} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 
-import {SplashScreen} from './screens';
+import {SplashScreen, SignIn} from './screens';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <SplashScreen />
+      {/* <SplashScreen /> */}
+      <SignIn />
     </NavigationContainer>
   );
 };
