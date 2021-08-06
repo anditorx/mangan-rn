@@ -1,14 +1,23 @@
-import React from 'react';
-import {Text, View} from 'react-native';
-import {ImgLogo_svg, strings} from '../../res';
+import React, {useEffect} from 'react';
+import {Text, View, StatusBar} from 'react-native';
+import {ImgLogo_svg, strings, colors} from '../../res';
 import {styles} from './styles';
 
-const SplashScreen = () => {
+const SplashScreen = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace('SignIn');
+    }, 2000);
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <ImgLogo_svg />
-      <Text style={styles.title}>{strings.appName}</Text>
-    </View>
+    <>
+      <StatusBar backgroundColor={colors.primary} barStyle="dark-content" />
+      <View style={styles.container}>
+        <ImgLogo_svg />
+        <Text style={styles.title}>{strings.appName}</Text>
+      </View>
+    </>
   );
 };
 
