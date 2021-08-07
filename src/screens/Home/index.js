@@ -9,7 +9,7 @@ import {
   useWindowDimensions,
   StatusBar,
 } from 'react-native';
-import {TabView, SceneMap} from 'react-native-tab-view';
+import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 
 // components
 import {FoodCard, Gap} from '../../components';
@@ -28,7 +28,33 @@ import {
 // styles
 import {styles} from './styles.js';
 
-const FirstRoute = () => <View style={{flex: 1, backgroundColor: '#ff4081'}} />;
+const renderTabBar = props => (
+  <TabBar
+    {...props}
+    indicatorStyle={{
+      backgroundColor: colors.primary,
+      height: 5,
+      // width: '15%',
+      // marginLeft: '3%',
+    }}
+    style={{backgroundColor: colors.white}}
+    tabStyle={{width: 'auto'}}
+    renderLabel={({route, focused, color}) => (
+      <Text
+        style={{
+          fontFamily: fonts.Medium,
+          fontSize: 14,
+          color: focused ? colors.black : colors.peace,
+        }}>
+        {route.title}
+      </Text>
+    )}
+  />
+);
+
+const FirstRoute = () => (
+  <View style={{flex: 1, backgroundColor: colors.white}} />
+);
 
 const SecondRoute = () => (
   <View style={{flex: 1, backgroundColor: '#673ab7'}} />
@@ -92,6 +118,7 @@ const Home = () => {
 
         <View style={styles.tabContainer}>
           <TabView
+            renderTabBar={renderTabBar}
             navigationState={{index, routes}}
             renderScene={renderScene}
             onIndexChange={setIndex}
