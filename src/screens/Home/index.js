@@ -1,14 +1,30 @@
+// react & react-native
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View, Image, SafeAreaView} from 'react-native';
+
+// components
+
+// resource
+import {ProfileDummy, colors, fonts, strings} from '../../res';
+
+// styles
+import {styles} from './styles.js';
 
 const Home = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <View style={styles.profileContainer}>
+          <View>
+            <Text style={styles.appName}>{strings.appName}</Text>
+            <Text style={styles.description}>Let's get some foods</Text>
+          </View>
+          <Image source={ProfileDummy} style={styles.profile} />
+        </View>
+        <Text>HomePageScreen</Text>
+      </View>
+    </SafeAreaView>
   );
 };
 
 export default Home;
-
-const styles = StyleSheet.create({});
