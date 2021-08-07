@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-
+import Rating from '../Rating';
 import {FoodDummy1, IcStarOn, IcStarOff, colors, fonts} from '../../../res';
 
 const FoodCard = ({titleFood, image, onPress, rating}) => {
@@ -9,16 +9,8 @@ const FoodCard = ({titleFood, image, onPress, rating}) => {
       <Image source={image} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.titleFood}>{titleFood}</Text>
-        <View style={styles.ratingContainer}>
-          <View style={styles.starContainer}>
-            <IcStarOn />
-            <IcStarOn />
-            <IcStarOn />
-            <IcStarOn />
-            <IcStarOff />
-          </View>
-          <Text>{rating}</Text>
-        </View>
+        {/* rating */}
+        <Rating rating={rating} />
       </View>
     </TouchableOpacity>
   );
@@ -28,7 +20,8 @@ export default FoodCard;
 
 const styles = StyleSheet.create({
   container: {
-    width: 200,
+    width: 110,
+    // height: 110,
     backgroundColor: colors.white,
     borderRadius: 8,
     shadowColor: colors.grey,
@@ -43,18 +36,16 @@ const styles = StyleSheet.create({
     marginRight: 14,
   },
   image: {
-    width: 200,
-    height: 140,
+    width: 110,
+    height: 65,
     resizeMode: 'cover',
   },
   content: {
-    padding: 12,
+    padding: 5,
   },
   titleFood: {
     fontFamily: fonts.Medium,
-    fontSize: 16,
+    fontSize: 12,
     color: colors.black,
   },
-  ratingContainer: {flexDirection: 'row'},
-  starContainer: {flexDirection: 'row'},
 });
