@@ -7,6 +7,7 @@ const mainColors = {
   darkGrey: '#747d8c',
   cityLight: '#dfe4ea',
   peace: '#a4b0be',
+  superLightGrey: '#f1f2f6',
 };
 
 export const colors = {
@@ -18,4 +19,5 @@ export const colors = {
   lightGrey: mainColors.cityLight,
   darkGrey: mainColors.darkGrey,
   peace: mainColors.peace,
+  superLightGrey: mainColors.superLightGrey,
 };

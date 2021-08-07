@@ -2,6 +2,10 @@ import {StyleSheet} from 'react-native';
 import {colors, fonts} from '../../res';
 
 const styles = StyleSheet.create({
+  page: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   profileContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -23,6 +27,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: fonts.Light,
     color: colors.darkGrey,
+  },
+  // foodcard section
+  foodcardContainer: {
+    flexDirection: 'row',
+    marginVertical: 24,
+  },
+  // tab section
+  tabContainer: {
+    flex: 1,
   },
 });
 
