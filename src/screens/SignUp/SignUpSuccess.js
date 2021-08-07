@@ -31,7 +31,7 @@ const SignUpSuccess = ({navigation}) => {
             <Button
               textButton="Find Foods"
               color={colors.primary}
-              // onPress={() => navigation.replace('SignUpSuccess')}
+              onPress={() => navigation.replace('MainApp')}
             />
           </View>
         </View>
