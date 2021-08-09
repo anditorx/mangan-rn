@@ -10,6 +10,7 @@ import {
   Home,
   Order,
   Profile,
+  FoodDetail,
 } from '../screens';
 
 import {BottomNavigator} from '../components';
@@ -61,6 +62,11 @@ const Router = () => {
       <Stack.Screen
         name="MainApp"
         component={MainApp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="FoodDetail"
+        component={FoodDetail}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

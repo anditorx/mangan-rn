@@ -13,9 +13,9 @@ import {
   fonts,
   strings,
 } from '../../../res';
-const ListItemFood = ({image, title, price, rating}) => {
+const ListItemFood = ({image, title, price, rating, onPress}) => {
   return (
-    <TouchableOpacity style={styles.listItem}>
+    <TouchableOpacity style={styles.listItem} onPress={onPress}>
       <Image source={image} style={styles.image} />
       <View style={styles.wrapperTextItem}>
         <Text style={styles.title}>{title}</Text>

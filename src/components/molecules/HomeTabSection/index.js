@@ -10,6 +10,7 @@ import {
   StatusBar,
 } from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import {useNavigation} from '@react-navigation/native';
 
 import Rating from '../Rating';
 import ListItemFood from '../ListItemFood';
@@ -29,7 +30,7 @@ const renderTabBar = props => (
   <TabBar
     {...props}
     indicatorStyle={styles.indicatorTabBar}
-    style={{backgroundColor: colors.white}}
+    style={styles.wrapperTabBar}
     tabStyle={styles.tabStyleTabBar}
     renderLabel={({route, focused, color}) => (
       <Text style={styles.textTabBar(focused)}>{route.title}</Text>
@@ -38,39 +39,46 @@ const renderTabBar = props => (
 );
 
 const NewTaste = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.wrapperItem}>
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy4}
         title="Garapcha Coffee"
         price="35.000"
         rating="4.3"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy3}
         title="Rominelo Soup"
         price="47.000"
         rating="4.1"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy2}
         title="Morrey Manggo Club"
         price="47.000"
         rating="4.6"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
         rating="4.2"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
         rating="4.2"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
@@ -80,39 +88,46 @@ const NewTaste = () => {
   );
 };
 const Popular = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.wrapperItem} showsVerticalScrollIndicator={false}>
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy4}
         title="Garapcha Coffee"
         price="35.000"
         rating="4.3"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy3}
         title="Rominelo Soup"
         price="47.000"
         rating="4.1"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy2}
         title="Morrey Manggo Club"
         price="47.000"
         rating="4.6"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
         rating="4.2"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
         rating="4.2"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
@@ -122,39 +137,46 @@ const Popular = () => {
   );
 };
 const Promo = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.wrapperItem} showsVerticalScrollIndicator={false}>
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy4}
         title="Garapcha Coffee"
         price="35.000"
         rating="4.3"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy3}
         title="Rominelo Soup"
         price="47.000"
         rating="4.1"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy2}
         title="Morrey Manggo Club"
         price="47.000"
         rating="4.6"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
         rating="4.2"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
         rating="4.2"
       />
       <ListItemFood
+        onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
@@ -203,6 +225,11 @@ const styles = StyleSheet.create({
   tabStyleTabBar: {
     justifyContent: 'center',
     paddingRight: 20,
+  },
+  wrapperTabBar: {
+    backgroundColor: colors.white,
+    elevation: 0,
+    shadowOpacity: 0,
   },
   textTabBar: focused => ({
     fontFamily: fonts.Medium,
