@@ -11,13 +11,15 @@ import {
 import {Rating, Button, Counter} from '../../components';
 import {FoodDummy6, IcBackWhite, colors, fonts} from '../../res';
 
-const FoodDetail = () => {
+const FoodDetail = ({navigation}) => {
   return (
     <>
       <StatusBar backgroundColor="transparent" barStyle="dark-content" />
       <ImageBackground source={FoodDummy6} style={styles.bgImage}>
         <SafeAreaView>
-          <TouchableOpacity style={styles.icBack}>
+          <TouchableOpacity
+            style={styles.icBack}
+            onPress={() => navigation.pop()}>
             <IcBackWhite />
           </TouchableOpacity>
         </SafeAreaView>
@@ -45,7 +47,10 @@ const FoodDetail = () => {
             <Text style={styles.price}>Rp 43.000</Text>
           </View>
           <View style={styles.wrapperButton}>
-            <Button textButton="Order Now" />
+            <Button
+              textButton="Order Now"
+              onPress={() => navigation.navigate('OrderSummary')}
+            />
           </View>
         </View>
       </View>

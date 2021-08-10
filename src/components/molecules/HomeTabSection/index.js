@@ -219,8 +219,6 @@ const styles = StyleSheet.create({
   indicatorTabBar: {
     backgroundColor: colors.primary,
     height: 5,
-    // width: '30%',
-    // marginLeft: 30,
   },
   tabStyleTabBar: {
     justifyContent: 'center',
@@ -241,5 +239,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     backgroundColor: colors.white,
     flex: 1,
+    paddingHorizontal: 24,
   },
 });

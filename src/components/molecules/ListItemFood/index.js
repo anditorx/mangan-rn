@@ -13,15 +13,16 @@ import {
   fonts,
   strings,
 } from '../../../res';
-const ListItemFood = ({image, title, price, rating, onPress}) => {
+const ListItemFood = ({image, title, price, rating, onPress, items}) => {
   return (
-    <TouchableOpacity style={styles.listItem} onPress={onPress}>
+    <TouchableOpacity style={styles.listItem(items)} onPress={onPress}>
       <Image source={image} style={styles.image} />
       <View style={styles.wrapperTextItem}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.price}>Rp {price}</Text>
       </View>
-      <Rating rating={rating} />
+      {rating && <Rating rating={rating} />}
+      {items && <Text style={styles.txtItems}>{items} items</Text>}
     </TouchableOpacity>
   );
 };
@@ -29,14 +30,14 @@ const ListItemFood = ({image, title, price, rating, onPress}) => {
 export default ListItemFood;
 
 const styles = StyleSheet.create({
-  listItem: {
+  listItem: items => ({
     flexDirection: 'row',
-    paddingHorizontal: 24,
     paddingVertical: 12,
     alignItems: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: colors.superLightGrey,
-  },
+    borderBottomWidth: items ? 0 : 2,
+    borderBottomColor: items ? null : colors.superLightGrey,
+    backgroundColor: colors.white,
+  }),
   image: {
     height: 60,
     width: 60,
@@ -55,5 +56,10 @@ const styles = StyleSheet.create({
   price: {
     fontFamily: fonts.Regular,
     fontSize: 12,
+  },
+  txtItems: {
+    fontSize: 12,
+    fontFamily: fonts.Regular,
+    color: colors.black,
   },
 });
