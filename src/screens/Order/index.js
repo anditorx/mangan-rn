@@ -1,14 +1,32 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {
+  View,
+  Text,
+  StatusBar,
+  SafeAreaView,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
+import {
+  Header,
+  TextInput,
+  Button,
+  Gap,
+  Select,
+  EmptyOrder,
+} from '../../components';
+import {colors, IlEmptyOrder} from '../../res';
+import {styles} from './styles.js';
 
-const Order = () => {
+const Order = ({navigation}) => {
   return (
-    <View>
-      <Text>Order</Text>
-    </View>
+    <>
+      <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
+      <SafeAreaView style={styles.screen}>
+        <EmptyOrder />
+      </SafeAreaView>
+    </>
   );
 };
 
 export default Order;
-
-const styles = StyleSheet.create({});

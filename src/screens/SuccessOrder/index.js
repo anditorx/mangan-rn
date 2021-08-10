@@ -36,7 +36,11 @@ const SuccessOrder = ({navigation}) => {
               textButton="View Your Order"
               color={colors.peace}
               fontColor={colors.white}
-              // onPress={() => navigation.replace('MainApp')}
+              onPress={() =>
+                navigation.replace('MainApp', {
+                  screen: 'Order',
+                })
+              }
             />
           </View>
         </View>
