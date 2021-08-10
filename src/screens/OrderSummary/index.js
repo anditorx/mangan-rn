@@ -6,7 +6,7 @@ import {FoodDummy1, colors, fonts} from '../../res';
 const OrderSummary = ({navigation}) => {
   return (
     <>
-      <StatusBar backgroundColor="transparent" barStyle="dark-content" />
+      <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
       <SafeAreaView>
         <Header
           onPressIcBack={() => navigation.pop()}
@@ -25,7 +25,11 @@ const OrderSummary = ({navigation}) => {
           <ItemValue label="Title Food" value="IDR 36.000" />
           <ItemValue label="Delivery" value="IDR 7.000" />
           <ItemValue label="Tax 10%" value="IDR 3.600" />
-          <ItemValue label="Total Price" value="IDR 37.600" />
+          <ItemValue
+            label="Total Price"
+            value="IDR 37.600"
+            valueColor={colors.topaz}
+          />
         </View>
 
         <View style={styles.content}>
@@ -38,7 +42,10 @@ const OrderSummary = ({navigation}) => {
         </View>
 
         <View style={styles.wrapperButton}>
-          <Button textButton="Checkout Now" />
+          <Button
+            textButton="Checkout Now"
+            onPress={() => navigation.replace('SuccessOrder')}
+          />
         </View>
       </SafeAreaView>
     </>
