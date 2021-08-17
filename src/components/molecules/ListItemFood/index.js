@@ -13,16 +13,88 @@ import {
   fonts,
   strings,
 } from '../../../res';
-const ListItemFood = ({image, title, price, rating, onPress, items}) => {
+const ListItemFood = ({
+  image,
+  title,
+  price,
+  rating,
+  onPress,
+  items,
+  inProgress,
+  totalOrder,
+  type,
+  date,
+  status,
+}) => {
+  const renderContent = () => {
+    switch (type) {
+      case 'product':
+        // item list product like homepage
+        return (
+          <>
+            <View style={styles.wrapperTextItem}>
+              <Text style={styles.title}>{title}</Text>
+              <Text style={styles.price}>Rp {price}</Text>
+            </View>
+            <Rating rating={rating} />
+          </>
+        );
+      case 'order-summary':
+        // item list order summary
+        return (
+          <>
+            <View style={styles.wrapperTextItem}>
+              <Text style={styles.title}>{title}</Text>
+              <Text style={styles.price}>Rp {price}</Text>
+            </View>
+            <Text style={styles.txtItems}>{items} items</Text>
+          </>
+        );
+      case 'in-progress':
+        // item list in progress
+        return (
+          <>
+            <View style={styles.wrapperTextItem}>
+              <Text style={styles.title}>{title}</Text>
+              <Text style={styles.price}>
+                {items} items. Rp {price}
+              </Text>
+            </View>
+          </>
+        );
+      case 'past-orders':
+        // item list past orders
+        return (
+          <>
+            <View style={styles.wrapperTextItem}>
+              <Text style={styles.title}>{title}</Text>
+              <Text style={styles.price}>
+                {items} items. Rp {price}
+              </Text>
+            </View>
+            <View>
+              <Text style={styles.date}>{date}</Text>
+              <Text style={styles.status}>{status}</Text>
+            </View>
+          </>
+        );
+      default:
+        return (
+          <>
+            <View style={styles.wrapperTextItem}>
+              <Text style={styles.title}>{title}</Text>
+              <Text style={styles.price}>Rp {price}</Text>
+            </View>
+            <Rating rating={rating} />
+          </>
+        );
+    }
+  };
+
   return (
     <TouchableOpacity style={styles.listItem(items)} onPress={onPress}>
       <Image source={image} style={styles.image} />
-      <View style={styles.wrapperTextItem}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.price}>Rp {price}</Text>
-      </View>
-      {rating && <Rating rating={rating} />}
-      {items && <Text style={styles.txtItems}>{items} items</Text>}
+      {renderContent()}
     </TouchableOpacity>
   );
 };
@@ -61,5 +133,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: fonts.Regular,
     color: colors.black,
+  },
+  date: {
+    fontSize: 10,
+    fontFamily: fonts.Regular,
+    color: colors.darkGrey,
+  },
+  status: {
+    fontSize: 10,
+    fontFamily: fonts.Regular,
+    color: colors.red,
   },
 });

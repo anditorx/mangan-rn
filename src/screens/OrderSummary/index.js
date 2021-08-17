@@ -20,6 +20,7 @@ const OrderSummary = ({navigation}) => {
             title="Title Food"
             price="36.000"
             items={6}
+            type="order-summary"
           />
           <Text style={styles.label}>Details Transaction</Text>
           <ItemValue label="Title Food" value="IDR 36.000" />

@@ -8,12 +8,14 @@ import ListItemFood from './ListItemFood';
 import Counter from './Counter';
 import ItemValue from './ItemValue';
 import EmptyOrder from './EmptyOrder';
+import OrderTabSection from './OrderTabSection';
 
 export {
   Header,
   BottomNavigator,
   FoodCard,
   HomeTabSection,
+  OrderTabSection,
   HomeProfile,
   Rating,
   ListItemFood,
