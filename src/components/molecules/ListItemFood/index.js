@@ -27,7 +27,7 @@ const ListItemFood = ({
   status,
   orderSummary,
 }) => {
-  const renderContent = items => {
+  const renderContent = () => {
     switch (type) {
       case 'product':
         // item list product like homepage

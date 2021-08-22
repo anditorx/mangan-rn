@@ -27,8 +27,8 @@ const OrderDetail = ({navigation}) => {
               image={FoodDummy1}
               title="Blablabla"
               price="36.000"
-              items={6}
               type="order-summary"
+              items="6"
               orderSummary
             />
             <Text style={styles.label}>Details Transaction</Text>
