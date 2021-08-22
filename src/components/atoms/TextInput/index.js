@@ -1,12 +1,17 @@
 import React from 'react';
 import {View, Text, TextInput as TextInputRN} from 'react-native';
 import {styles} from './styles.js';
-const TextInput = ({withLabel, placeholder, label}) => {
+
+const TextInput = ({withLabel, placeholder, label, ...props}) => {
   if (withLabel) {
     return (
       <View>
         <Text style={styles.label}>{label}</Text>
-        <TextInputRN style={styles.input} placeholder={placeholder} />
+        <TextInputRN
+          style={styles.input}
+          placeholder={placeholder}
+          {...props}
+        />
       </View>
     );
   }
