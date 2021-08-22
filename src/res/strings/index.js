@@ -1,3 +1,3 @@
 export const strings = {
-  appName: 'Your Food',
+  appName: 'Mangan',
 };
