@@ -25,8 +25,9 @@ const ListItemFood = ({
   type,
   date,
   status,
+  orderSummary,
 }) => {
-  const renderContent = () => {
+  const renderContent = items => {
     switch (type) {
       case 'product':
         // item list product like homepage
@@ -92,7 +93,7 @@ const ListItemFood = ({
   };
 
   return (
-    <TouchableOpacity style={styles.listItem(items)} onPress={onPress}>
+    <TouchableOpacity style={styles.listItem(orderSummary)} onPress={onPress}>
       <Image source={image} style={styles.image} />
       {renderContent()}
     </TouchableOpacity>
@@ -102,12 +103,12 @@ const ListItemFood = ({
 export default ListItemFood;
 
 const styles = StyleSheet.create({
-  listItem: items => ({
+  listItem: orderSummary => ({
     flexDirection: 'row',
     paddingVertical: 12,
     alignItems: 'center',
-    borderBottomWidth: items ? 0 : 2,
-    borderBottomColor: items ? null : colors.superLightGrey,
+    borderBottomWidth: orderSummary ? 0 : 2,
+    borderBottomColor: orderSummary ? null : colors.superLightGrey,
     backgroundColor: colors.white,
   }),
   image: {

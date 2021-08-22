@@ -43,7 +43,7 @@ const InProgress = () => {
   return (
     <View style={styles.wrapperItem}>
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy4}
         title="Garapcha Coffee"
         price="35.000"
@@ -53,7 +53,7 @@ const InProgress = () => {
         type="in-progress"
       />
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy3}
         title="Rominelo Soup"
         price="47.000"
@@ -63,7 +63,7 @@ const InProgress = () => {
         type="in-progress"
       />
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy2}
         title="Morrey Manggo Club"
         price="47.000"
@@ -73,7 +73,7 @@ const InProgress = () => {
         type="in-progress"
       />
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
@@ -83,7 +83,7 @@ const InProgress = () => {
         type="in-progress"
       />
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
@@ -93,7 +93,7 @@ const InProgress = () => {
         type="in-progress"
       />
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
@@ -110,7 +110,7 @@ const PastOrders = () => {
   return (
     <ScrollView style={styles.wrapperItem} showsVerticalScrollIndicator={false}>
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy4}
         title="Garapcha Coffee"
         price="35.000"
@@ -120,7 +120,7 @@ const PastOrders = () => {
         items={3}
       />
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy3}
         title="Rominelo Soup"
         price="47.000"
@@ -130,7 +130,7 @@ const PastOrders = () => {
         items={3}
       />
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy2}
         title="Morrey Manggo Club"
         price="47.000"
@@ -141,7 +141,7 @@ const PastOrders = () => {
         status="Canceled"
       />
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
@@ -151,7 +151,7 @@ const PastOrders = () => {
         items={3}
       />
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
@@ -161,7 +161,7 @@ const PastOrders = () => {
         items={3}
       />
       <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
+        onPress={() => navigation.navigate('OrderDetail')}
         image={FoodDummy1}
         title="Orca Hompimpa Fruit"
         price="27.000"
