@@ -7,29 +7,28 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import {Header, TextInput, Button, Gap, Select} from '../../components';
-import {colors, IlSuccessSignUp} from '../../res';
+import {useNavigation} from '@react-navigation/native';
+import {Header} from '../Header';
+import {TextInput, Button, Gap, Select} from '../../atoms';
+import {colors, IlEmptyOrder} from '../../../res';
 import {styles} from './styles.js';
 
-const SignUpSuccess = ({navigation}) => {
+const EmptyOrder = () => {
+  const navigation = useNavigation();
   return (
     <>
       <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
       <SafeAreaView style={styles.screen}>
-        <View style={styles.containerSuccess}>
-          <IlSuccessSignUp />
+        <View style={styles.container}>
+          <IlEmptyOrder />
           <Gap height={30} />
-          <Text style={styles.titleSignUpSuccess}>Yeay! Completed</Text>
+          <Text style={styles.title}>You've Made Order</Text>
           <Gap height={6} />
-          <Text style={styles.subTitleSignUpSuccess}>
-            Now you are able to order
-          </Text>
-          <Text style={styles.subTitleSignUpSuccess}>
-            some food as a self-reward
-          </Text>
+          <Text style={styles.subTitle}>Just stay at home while we are</Text>
+          <Text style={styles.subTitle}>preparing your foods!</Text>
           <View style={styles.containerButtonFindFoods}>
             <Button
-              textButton="Find Foods"
+              textButton="Order Other Foods"
               color={colors.primary}
               onPress={() => navigation.replace('MainApp')}
             />
@@ -40,4 +39,4 @@ const SignUpSuccess = ({navigation}) => {
   );
 };
 
-export default SignUpSuccess;
+export default EmptyOrder;
