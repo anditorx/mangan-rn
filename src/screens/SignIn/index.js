@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
 import {View, Text, SafeAreaView, StatusBar} from 'react-native';
 import {Header, TextInput, Button, Gap} from '../../components';
+import Axios from 'axios';
 import {colors} from '../../res';
 import {useForm} from '../../utils';
 import {styles} from './styles.js';
 
+import * as Constants from '../../config/Constant';
+import * as Services from '../../config/Services';
+import {API_HOST} from '../../config';
+
 const SignIn = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  console.log('API :=> ', Constants.BASE_URL + Services.login);
 
   const [form, setForm] = useForm({
     email: '',
@@ -15,7 +19,15 @@ const SignIn = ({navigation}) => {
   });
 
   const onSubmit = () => {
+    const urlService = Constants.BASE_URL + Services.login;
     console.log('form :=> ', form);
+    Axios.post(urlService, form)
+      .then(res => {
+        console.log('success :=> ', res);
+      })
+      .catch(err => {
+        console.log('err :=> ', err.message);
+      });
   };
 
   return (
