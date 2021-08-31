@@ -7,11 +7,34 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
+import * as ActionTypes from '../../redux/actionTypes.js';
 import {Header, TextInput, Button, Gap, Select} from '../../components';
 import {colors} from '../../res';
 import {styles} from './styles.js';
+import {useForm} from '../../utils';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useSelector, useDispatch} from 'react-redux';
 
 const SignUpAddress = ({navigation}) => {
+  const registerReducer = useSelector(state => state.registerReducer);
+  const dispatch = useDispatch();
+  const [form, setForm] = useForm({
+    address: '',
+    city: 'Jakarta',
+    houseNumber: '',
+    phoneNumber: '',
+  });
+
+  const onSubmit = () => {
+    console.log('form :=> ', form);
+    const dataRegister = {
+      ...form,
+      ...registerReducer,
+    };
+    console.log('dataRegister :=> ', dataRegister);
+    // navigation.replace('SignUpSuccess')
+  };
+
   return (
     <>
       <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
@@ -21,33 +44,46 @@ const SignUpAddress = ({navigation}) => {
           subTitle="Make sure your data is valid"
           onPressIcBack={() => navigation.pop()}
         />
-        <View style={styles.container}>
+        <KeyboardAwareScrollView
+          style={styles.container}
+          extraHeight={150}
+          enableOnAndroid>
           <TextInput
             withLabel
             label="Phone Number"
             placeholder="Input Your Phone Number"
+            value={form.phoneNumber}
+            onChangeText={value => setForm('phoneNumber', value)}
           />
           <Gap height={16} />
           <TextInput
             withLabel
             label="Address"
             placeholder="Input Your Address"
+            value={form.address}
+            onChangeText={value => setForm('address', value)}
           />
           <Gap height={16} />
           <TextInput
             withLabel
             label="House No."
             placeholder="Input Your House Number"
+            value={form.houseNumber}
+            onChangeText={value => setForm('houseNumber', value)}
           />
           {Platform.OS === 'ios' ? <Gap height={45} /> : <Gap height={16} />}
-          <Select label="Select City" />
+          <Select
+            label="Select City"
+            value={form.city}
+            onSelectChange={value => setForm('city', value)}
+          />
           <Gap height={24} />
-        </View>
+        </KeyboardAwareScrollView>
         <View style={styles.wrapperButtonSignUp}>
           <Button
             textButton="Sign Up, Now"
             color={colors.primary}
-            onPress={() => navigation.replace('SignUpSuccess')}
+            onPress={onSubmit}
           />
         </View>
       </SafeAreaView>

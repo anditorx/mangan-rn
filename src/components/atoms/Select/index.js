@@ -3,9 +3,7 @@ import {View, Text, Platform} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {styles} from './styles.js';
 
-const Select = ({label}) => {
-  const [selectedLanguage, setSelectedLanguage] = useState();
-
+const Select = ({label, value, onSelectChange}) => {
   console.log('platform : ', Platform.OS);
   if (Platform.OS === 'ios') {
     return (
@@ -14,17 +12,13 @@ const Select = ({label}) => {
         <View style={styles.inputForIos}>
           <Picker
             // style={{height: 50, width: 100}}
-            selectedValue={selectedLanguage}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedLanguage(itemValue)
-            }>
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="TypeScript" value="ts" />
-            <Picker.Item label="Python" value="python" />
-            <Picker.Item label="PHP" value="php" />
-            <Picker.Item label="C" value="c" />
-            <Picker.Item label="Dart" value="dart" />
+            selectedValue={value}
+            onValueChange={(itemValue, itemIndex) => onSelectChange(itemValue)}>
+            <Picker.Item label="Jakarta" value="jakarta" />
+            <Picker.Item label="Tangerang" value="tangerang" />
+            <Picker.Item label="Bogor" value="bogor" />
+            <Picker.Item label="Bekasi" value="bekasi" />
+            <Picker.Item label="Bandung" value="bandung" />
           </Picker>
         </View>
       </View>
@@ -37,12 +31,13 @@ const Select = ({label}) => {
       <View style={styles.input}>
         <Picker
           // style={{height: 50, width: 100}}
-          selectedValue={selectedLanguage}
-          onValueChange={(itemValue, itemIndex) =>
-            setSelectedLanguage(itemValue)
-          }>
-          <Picker.Item label="Java" value="java" />
-          <Picker.Item label="JavaScript" value="js" />
+          selectedValue={value}
+          onValueChange={(itemValue, itemIndex) => onSelectChange(itemValue)}>
+          <Picker.Item label="Jakarta" value="jakarta" />
+          <Picker.Item label="Tangerang" value="tangerang" />
+          <Picker.Item label="Bogor" value="bogor" />
+          <Picker.Item label="Bekasi" value="bekasi" />
+          <Picker.Item label="Bandung" value="bandung" />
         </Picker>
       </View>
     </View>
