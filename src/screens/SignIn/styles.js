@@ -4,6 +4,7 @@ import {colors, fonts} from '../../res';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: colors.white,
   },
   container: {
     backgroundColor: colors.white,

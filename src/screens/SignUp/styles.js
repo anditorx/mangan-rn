@@ -4,12 +4,11 @@ import {colors, fonts} from '../../res';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: colors.white,
   },
   container: {
-    backgroundColor: colors.white,
     paddingHorizontal: 24,
-    paddingVertical: 26,
-    marginTop: 24,
+    paddingTop: 24,
     flex: 1,
   },
   wrapperPhoto: {
