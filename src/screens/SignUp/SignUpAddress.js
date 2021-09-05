@@ -17,6 +17,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import Axios from 'axios';
 import * as Constants from '../../config/Constant';
 import * as Services from '../../config/Services';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 const SignUpAddress = ({navigation}) => {
   const registerReducer = useSelector(state => state.registerReducer);
@@ -39,11 +40,20 @@ const SignUpAddress = ({navigation}) => {
     Axios.post(urlService, dataRegister)
       .then(res => {
         console.log('success register :=> ', res);
+        showToast('Register Success', 'success');
         navigation.replace('SignUpSuccess');
       })
       .catch(err => {
-        console.log('err :=> ', err.message);
+        showToast('Ups!', err?.response?.data?.message, 'danger');
       });
+  };
+
+  const showToast = (message, description, type) => {
+    showMessage({
+      message,
+      description,
+      type,
+    });
   };
 
   return (
