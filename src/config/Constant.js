@@ -1,4 +1,4 @@
-export const APP_VERSION = '0.0.1';
+export const APP_VERSION = '1.0.0';
 
 // Base URL Development
 export const BASE_URL = 'http://foodmarket-backend.buildwithangga.id/';

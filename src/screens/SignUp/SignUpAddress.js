@@ -14,6 +14,9 @@ import {styles} from './styles.js';
 import {useForm} from '../../utils';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useSelector, useDispatch} from 'react-redux';
+import Axios from 'axios';
+import * as Constants from '../../config/Constant';
+import * as Services from '../../config/Services';
 
 const SignUpAddress = ({navigation}) => {
   const registerReducer = useSelector(state => state.registerReducer);
@@ -27,12 +30,20 @@ const SignUpAddress = ({navigation}) => {
 
   const onSubmit = () => {
     console.log('form :=> ', form);
+    const urlService = Constants.BASE_URL + Services.register;
     const dataRegister = {
       ...form,
       ...registerReducer,
     };
     console.log('dataRegister :=> ', dataRegister);
-    // navigation.replace('SignUpSuccess')
+    Axios.post(urlService, dataRegister)
+      .then(res => {
+        console.log('success register :=> ', res);
+        navigation.replace('SignUpSuccess');
+      })
+      .catch(err => {
+        console.log('err :=> ', err.message);
+      });
   };
 
   return (

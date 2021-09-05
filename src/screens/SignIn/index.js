@@ -8,7 +8,6 @@ import {styles} from './styles.js';
 
 import * as Constants from '../../config/Constant';
 import * as Services from '../../config/Services';
-import {API_HOST} from '../../config';
 
 const SignIn = ({navigation}) => {
   console.log('API :=> ', Constants.BASE_URL + Services.login);
