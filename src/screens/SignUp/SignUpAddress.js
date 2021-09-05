@@ -37,13 +37,16 @@ const SignUpAddress = ({navigation}) => {
       ...registerReducer,
     };
     console.log('dataRegister :=> ', dataRegister);
+    dispatch({type: ActionTypes.SET_LOADING, value: true});
     Axios.post(urlService, dataRegister)
       .then(res => {
         console.log('success register :=> ', res);
+        dispatch({type: ActionTypes.SET_LOADING, value: false});
         showToast('Register Success', 'success');
         navigation.replace('SignUpSuccess');
       })
       .catch(err => {
+        dispatch({type: ActionTypes.SET_LOADING, value: false});
         showToast('Ups!', err?.response?.data?.message, 'danger');
       });
   };

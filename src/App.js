@@ -5,17 +5,25 @@ import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import Router from '../src/router';
 import store from './redux/store';
-import {SplashScreen, SignIn} from './screens';
-import {Provider} from 'react-redux';
+import {Loading} from './components';
+import {Provider, useSelector} from 'react-redux';
 import FlashMessage from 'react-native-flash-message';
 
 const App = () => {
   return (
+    <Provider store={store}>
+      <MainApp />
+    </Provider>
+  );
+};
+
+const MainApp = () => {
+  const {isLoading} = useSelector(state => state.globalReducer);
+  return (
     <NavigationContainer>
-      <Provider store={store}>
-        <Router />
-        <FlashMessage position="bottom" />
-      </Provider>
+      <Router />
+      <FlashMessage position="bottom" />
+      {isLoading && <Loading />}
     </NavigationContainer>
   );
 };

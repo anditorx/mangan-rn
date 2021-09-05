@@ -1,7 +1,7 @@
 const mainColors = {
   yellow2: '#FFC700',
   black: '#000000',
-  blackLowOpacity: 'rgba(0, 0, 0, 0.5)',
+  blackLowOpacity: 'rgba(0, 0, 0, 0.3)',
   greyLowOpacity: 'rgba(108, 122, 137, 0.3)',
   white: '#FFFFFF',
   grey: '#8D92A3',
