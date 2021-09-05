@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   photoContainer: {
-    padding: 24,
+    // padding: 24,
     backgroundColor: colors.lightGrey,
     height: 90,
     width: 90,

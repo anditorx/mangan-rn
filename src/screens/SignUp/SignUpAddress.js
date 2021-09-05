@@ -11,7 +11,7 @@ import * as ActionTypes from '../../redux/actionTypes.js';
 import {Header, TextInput, Button, Gap, Select} from '../../components';
 import {colors} from '../../res';
 import {styles} from './styles.js';
-import {useForm} from '../../utils';
+import {useForm, showToast} from '../../utils';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useSelector, useDispatch} from 'react-redux';
 import Axios from 'axios';
@@ -51,13 +51,13 @@ const SignUpAddress = ({navigation}) => {
       });
   };
 
-  const showToast = (message, description, type) => {
-    showMessage({
-      message,
-      description,
-      type,
-    });
-  };
+  // const showToast = (message, description, type) => {
+  //   showMessage({
+  //     message,
+  //     description,
+  //     type,
+  //   });
+  // };
 
   return (
     <>
