@@ -1,7 +1,7 @@
 import * as ActionTypes from '../actionTypes.js';
 
+// register
 const initialRegisterState = {
-  // register
   name: '',
   email: '',
   password: '',
@@ -22,8 +22,8 @@ export const registerReducer = (state = initialRegisterState, action) => {
   return state;
 };
 
+// photo
 const initialPhotoState = {
-  // photo
   uri: '',
   type: '',
   name: '',

@@ -20,7 +20,8 @@ import * as Services from '../../config/Services';
 import {showMessage, hideMessage} from 'react-native-flash-message';
 
 const SignUpAddress = ({navigation}) => {
-  const registerReducer = useSelector(state => state.registerReducer);
+  const {registerReducer, photoReducer} = useSelector(state => state);
+  console.log('photoReducer :=> ', photoReducer);
   const dispatch = useDispatch();
   const [form, setForm] = useForm({
     address: '',
@@ -30,24 +31,50 @@ const SignUpAddress = ({navigation}) => {
   });
 
   const onSubmit = () => {
-    console.log('form :=> ', form);
     const urlService = Constants.BASE_URL + Services.register;
+    console.log('urlService :=> ', urlService);
     const dataRegister = {
       ...form,
       ...registerReducer,
     };
     console.log('dataRegister :=> ', dataRegister);
+
     dispatch({type: ActionTypes.SET_LOADING, value: true});
     Axios.post(urlService, dataRegister)
       .then(res => {
-        console.log('success register :=> ', res);
+        console.log('success register :=> ', res.data);
+
+        if (photoReducer.isUploadPhoto) {
+          const serviceAddAva =
+            Constants.BASE_URL + Services.uploadPhotoProfile;
+          console.log(serviceAddAva);
+          const photoForUpload = new FormData();
+          photoForUpload.append('file', photoReducer);
+          const options = {
+            headers: {
+              Authorization: `${res.data.data.token_type} ${res.data.data.access_token}`,
+              'Content-Type': 'multipart/form-data',
+            },
+          };
+
+          Axios.post(serviceAddAva, photoForUpload, options)
+            .then(resUpload => {
+              console.log(resUpload);
+            })
+            .catch(errUpload => {
+              console.log(errUpload);
+              showToast('Ups!', errUpload?.response?.data?.message, 'danger');
+            });
+        }
+
         dispatch({type: ActionTypes.SET_LOADING, value: false});
-        showToast('Register Success', 'success');
+        showToast('Register Success', 'Welcome to Mangan!', 'success');
         navigation.replace('SignUpSuccess');
       })
-      .catch(err => {
+      .catch(error => {
+        console.log('error register :=> ', error);
         dispatch({type: ActionTypes.SET_LOADING, value: false});
-        showToast('Ups!', err?.response?.data?.message, 'danger');
+        showToast('Ups!', error?.response?.data?.message, 'danger');
       });
   };
 
@@ -78,6 +105,7 @@ const SignUpAddress = ({navigation}) => {
             placeholder="Input Your Phone Number"
             value={form.phoneNumber}
             onChangeText={value => setForm('phoneNumber', value)}
+            keyboardType="numeric"
           />
           <Gap height={16} />
           <TextInput

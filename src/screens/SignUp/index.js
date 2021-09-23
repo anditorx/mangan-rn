@@ -57,6 +57,8 @@ const SignUp = ({navigation}) => {
           name: response.assets[0].fileName,
         };
         setPhoto(source);
+        dispatch({type: ActionTypes.SET_PHOTO, value: dataImage});
+        dispatch({type: ActionTypes.SET_UPLOAD_STATUS, value: true});
       }
     });
   };
