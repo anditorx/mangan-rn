@@ -7,8 +7,8 @@ import {useForm, showToast, storeData} from '../../utils';
 
 export const signUpAction =
   (dataRegister, photoReducer, navigation) => dispatch => {
+    dispatch(setLoading(true));
     const urlService = Constants.BASE_URL + Services.register;
-    console.log('urlService :=> ', urlService);
 
     Axios.post(urlService, dataRegister)
       .then(res => {
@@ -22,7 +22,6 @@ export const signUpAction =
         if (photoReducer.isUploadPhoto) {
           const serviceAddAva =
             Constants.BASE_URL + Services.uploadPhotoProfile;
-          console.log(serviceAddAva);
           const photoForUpload = new FormData();
           photoForUpload.append('file', photoReducer);
           const options = {
@@ -56,3 +55,24 @@ export const signUpAction =
         showToast('Ups!', error?.response?.data?.message, 'danger');
       });
   };
+export const signInAction = (form, navigation) => dispatch => {
+  dispatch(setLoading(true));
+  const urlService = Constants.BASE_URL + Services.login;
+  Axios.post(urlService, form)
+    .then(res => {
+      dispatch(setLoading(false));
+      const resToken = `${res.data.data.token_type} ${res.data.data.access_token}`;
+      const resDataUser = res.data.data.user;
+      // store data token
+      storeData('@token', {
+        value: resToken,
+      });
+      // store data user
+      storeData('@userData', resDataUser);
+      navigation.reset({index: 0, routes: [{name: 'MainApp'}]});
+    })
+    .catch(err => {
+      showToast('Ups!', err?.response?.data?.message, 'danger');
+      dispatch(setLoading(false));
+    });
+};

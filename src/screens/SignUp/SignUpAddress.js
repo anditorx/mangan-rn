@@ -19,7 +19,6 @@ import {setLoading, signUpAction} from '../../redux/action';
 
 const SignUpAddress = ({navigation}) => {
   const {registerReducer, photoReducer} = useSelector(state => state);
-  console.log('photoReducer :=> ', photoReducer);
   const dispatch = useDispatch();
   const [form, setForm] = useForm({
     address: '',
@@ -30,13 +29,11 @@ const SignUpAddress = ({navigation}) => {
 
   const onSubmit = () => {
     const urlService = Constants.BASE_URL + Services.register;
-    console.log('urlService :=> ', urlService);
     const dataRegister = {
       ...form,
       ...registerReducer,
     };
-    console.log('dataRegister :=> ', dataRegister);
-    dispatch(setLoading(true));
+
     dispatch(signUpAction(dataRegister, photoReducer, navigation));
   };
 

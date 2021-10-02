@@ -5,28 +5,21 @@ import Axios from 'axios';
 import {colors} from '../../res';
 import {useForm} from '../../utils';
 import {styles} from './styles.js';
-
+import {setLoading, signInAction} from '../../redux/action';
+import {useSelector, useDispatch} from 'react-redux';
 import * as Constants from '../../config/Constant';
 import * as Services from '../../config/Services';
 
 const SignIn = ({navigation}) => {
-  console.log('API :=> ', Constants.BASE_URL + Services.login);
-
+  const dispatch = useDispatch();
   const [form, setForm] = useForm({
     email: '',
     password: '',
   });
 
   const onSubmit = () => {
-    const urlService = Constants.BASE_URL + Services.login;
     console.log('form :=> ', form);
-    Axios.post(urlService, form)
-      .then(res => {
-        console.log('success :=> ', res);
-      })
-      .catch(err => {
-        console.log('err :=> ', err.message);
-      });
+    dispatch(signInAction(form, navigation));
   };
 
   return (
