@@ -47,7 +47,7 @@ const SignUpAddress = ({navigation}) => {
         <Header
           title="Address"
           subTitle="Make sure your data is valid"
-          onPressIcBack={() => navigation.pop()}
+          onPressIcBack={() => navigation.goBack()}
         />
         <KeyboardAwareScrollView
           style={styles.container}

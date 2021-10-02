@@ -14,8 +14,7 @@ export const signUpAction =
       .then(res => {
         const resDataUser = res.data.data.user;
         const resToken = `${res.data.data.token_type} ${res.data.data.access_token}`;
-        // store data user
-        storeData('@userData', resDataUser);
+
         // store data token
         storeData('@token', {
           value: resToken,
@@ -33,16 +32,24 @@ export const signUpAction =
             },
           };
 
-          Axios.post(serviceAddAva, photoForUpload, options).catch(
-            errUpload => {
+          Axios.post(serviceAddAva, photoForUpload, options)
+            .then(resUpload => {
+              resDataUser.profile_photo_url = `http://foodmarket-backend.buildwithangga.id/storage/${resUpload.data.data[0]}`;
+              // store data user
+              storeData('@userData', resDataUser);
+              navigation.reset({index: 0, routes: [{name: 'SignUpSuccess'}]});
+            })
+            .catch(errUpload => {
               console.log(errUpload);
               showToast('Ups!', errUpload?.response?.data?.message, 'danger');
-            },
-          );
+              navigation.reset({index: 0, routes: [{name: 'SignUpSuccess'}]});
+            });
+        } else {
+          storeData('@userData', resDataUser);
+          navigation.reset({index: 0, routes: [{name: 'SignUpSuccess'}]});
         }
 
         dispatch(setLoading(false));
-        navigation.replace('SignUpSuccess');
       })
       .catch(error => {
         dispatch(setLoading(false));

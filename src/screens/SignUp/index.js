@@ -69,7 +69,7 @@ const SignUp = ({navigation}) => {
         <Header
           title="Sign Up"
           subTitle="Create your account"
-          onPressIcBack={() => navigation.pop()}
+          onPressIcBack={() => navigation.goBack()}
         />
         <KeyboardAwareScrollView extraHeight={150} enableOnAndroid>
           <View style={styles.container} showsVerticalScrollIndicator={false}>
