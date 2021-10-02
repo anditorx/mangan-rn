@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, SafeAreaView, StatusBar} from 'react-native';
 import {Header, TextInput, Button, Gap} from '../../components';
 import Axios from 'axios';
 import {colors} from '../../res';
-import {useForm} from '../../utils';
+import {useForm, getData} from '../../utils';
 import {styles} from './styles.js';
 import {setLoading, signInAction} from '../../redux/action';
 import {useSelector, useDispatch} from 'react-redux';

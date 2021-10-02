@@ -26,6 +26,8 @@ import {
   strings,
 } from '../../../res';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const renderTabBar = props => (
   <TabBar
     {...props}
@@ -40,12 +42,19 @@ const renderTabBar = props => (
 
 const Account = () => {
   const navigation = useNavigation();
+  const signOut = () => {
+    AsyncStorage.multiRemove(['@userData', '@token']).then(result => {
+      navigation.reset({index: 0, routes: [{name: 'SignIn'}]});
+    });
+  };
+
   return (
     <View style={styles.wrapperItem}>
       <ListItemMenu text="Edit Profile" />
       <ListItemMenu text="Home Address" />
       <ListItemMenu text="Security" />
       <ListItemMenu text="Payment" />
+      <ListItemMenu text="Sign Out" onPress={signOut} />
     </View>
   );
 };
