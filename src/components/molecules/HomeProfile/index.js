@@ -9,7 +9,6 @@ const HomeProfile = () => {
   useEffect(() => {
     // get userData from store/asyncStorage
     getData('@userData').then(res => {
-      console.log('userProfile :=> ', res);
       setPhoto({uri: res.profile_photo_url});
     });
   }, []);

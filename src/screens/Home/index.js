@@ -1,5 +1,5 @@
 // react & react-native
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, SafeAreaView, ScrollView, StatusBar} from 'react-native';
 
 // components
@@ -16,7 +16,15 @@ import {
 // styles
 import {styles} from './styles.js';
 
+// others
+import {useSelector, useDispatch} from 'react-redux';
+import {getFoodData} from '../../redux/action';
 const Home = () => {
+  const dispatch = useDispatch();
+  const {food} = useSelector(state => state.homeReducer);
+  useEffect(() => {
+    dispatch(getFoodData());
+  }, [dispatch]);
   return (
     <SafeAreaView style={styles.page}>
       {/* header */}
@@ -27,26 +35,16 @@ const Home = () => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.foodcardContainer}>
             <Gap width={24} />
-            <FoodCard
-              image={FoodDummy1}
-              titleFood="Orca Hompimpa Fruit"
-              rating={4.2}
-            />
-            <FoodCard
-              image={FoodDummy2}
-              titleFood="Morrey Manggo Club"
-              rating={4.6}
-            />
-            <FoodCard
-              image={FoodDummy3}
-              titleFood="Rominelo Soup"
-              rating={4.3}
-            />
-            <FoodCard
-              image={FoodDummy4}
-              titleFood="Garapcha Coffee"
-              rating={4.0}
-            />
+            {food.map((itemFood, index) => {
+              return (
+                <FoodCard
+                  key={index}
+                  image={{uri: itemFood.picturePath}}
+                  titleFood={itemFood.name}
+                  rating={itemFood.rate}
+                />
+              );
+            })}
           </View>
         </ScrollView>
       </View>

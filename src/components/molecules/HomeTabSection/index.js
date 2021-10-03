@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   View,
@@ -26,6 +26,10 @@ import {
   strings,
 } from '../../../res';
 
+// others
+import {useSelector, useDispatch} from 'react-redux';
+import {getFoodDataByTypes} from '../../../redux/action';
+
 const renderTabBar = props => (
   <TabBar
     {...props}
@@ -39,150 +43,78 @@ const renderTabBar = props => (
 );
 
 const NewTaste = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
+  const types = 'new_food';
+  const {newTaste} = useSelector(state => state.homeReducer);
+  useEffect(() => {
+    dispatch(getFoodDataByTypes(types));
+  }, [dispatch]);
   return (
     <View style={styles.wrapperItem}>
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy4}
-        title="Garapcha Coffee"
-        price="35.000"
-        rating="4.3"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy3}
-        title="Rominelo Soup"
-        price="47.000"
-        rating="4.1"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy2}
-        title="Morrey Manggo Club"
-        price="47.000"
-        rating="4.6"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-      />
+      {newTaste.map((item, index) => {
+        return (
+          <ListItemFood
+            key={item.id}
+            onPress={() => navigation.navigate('FoodDetail')}
+            image={{uri: item.picturePath}}
+            title={item.name}
+            price={item.price}
+            rating={item.rate}
+          />
+        );
+      })}
     </View>
   );
 };
 const Popular = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
+  const types = 'popular';
+  const {popular} = useSelector(state => state.homeReducer);
+  useEffect(() => {
+    dispatch(getFoodDataByTypes(types));
+  }, [dispatch]);
   return (
-    <ScrollView style={styles.wrapperItem} showsVerticalScrollIndicator={false}>
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy4}
-        title="Garapcha Coffee"
-        price="35.000"
-        rating="4.3"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy3}
-        title="Rominelo Soup"
-        price="47.000"
-        rating="4.1"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy2}
-        title="Morrey Manggo Club"
-        price="47.000"
-        rating="4.6"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-      />
-    </ScrollView>
+    <View style={styles.wrapperItem}>
+      {popular.map((item, index) => {
+        return (
+          <ListItemFood
+            key={item.id}
+            onPress={() => navigation.navigate('FoodDetail')}
+            image={{uri: item.picturePath}}
+            title={item.name}
+            price={item.price}
+            rating={item.rate}
+          />
+        );
+      })}
+    </View>
   );
 };
 const Promo = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
+  const types = 'recommended';
+  const {recommended} = useSelector(state => state.homeReducer);
+  useEffect(() => {
+    dispatch(getFoodDataByTypes(types));
+  }, [dispatch]);
   return (
-    <ScrollView style={styles.wrapperItem} showsVerticalScrollIndicator={false}>
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy4}
-        title="Garapcha Coffee"
-        price="35.000"
-        rating="4.3"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy3}
-        title="Rominelo Soup"
-        price="47.000"
-        rating="4.1"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy2}
-        title="Morrey Manggo Club"
-        price="47.000"
-        rating="4.6"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('FoodDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-      />
-    </ScrollView>
+    <View style={styles.wrapperItem}>
+      {recommended.map((item, index) => {
+        return (
+          <ListItemFood
+            key={item.id}
+            onPress={() => navigation.navigate('FoodDetail')}
+            image={{uri: item.picturePath}}
+            title={item.name}
+            price={item.price}
+            rating={item.rate}
+          />
+        );
+      })}
+    </View>
   );
 };
 

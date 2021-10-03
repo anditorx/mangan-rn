@@ -13,6 +13,7 @@ import {
   fonts,
   strings,
 } from '../../../res';
+import Number from './../Number';
 const ListItemFood = ({
   image,
   title,
@@ -35,7 +36,8 @@ const ListItemFood = ({
           <>
             <View style={styles.wrapperTextItem}>
               <Text style={styles.title}>{title}</Text>
-              <Text style={styles.price}>Rp {price}</Text>
+              <Number number={price} />
+              {/* <Text style={styles.price}>Rp {price}</Text> */}
             </View>
             <Rating rating={rating} />
           </>
@@ -46,6 +48,7 @@ const ListItemFood = ({
           <>
             <View style={styles.wrapperTextItem}>
               <Text style={styles.title}>{title}</Text>
+
               <Text style={styles.price}>Rp {price}</Text>
             </View>
             <Text style={styles.txtItems}>{items} items</Text>
@@ -84,7 +87,8 @@ const ListItemFood = ({
           <>
             <View style={styles.wrapperTextItem}>
               <Text style={styles.title}>{title}</Text>
-              <Text style={styles.price}>Rp {price}</Text>
+              <Number number={price} />
+              {/* <Text style={styles.price}>Rp {price}</Text> */}
             </View>
             <Rating rating={rating} />
           </>

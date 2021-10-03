@@ -1,18 +1,26 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {IcStarOn, IcStarOff, colors, fonts} from '../../../res';
+import Number from '../Number';
 
 const Rating = ({rating}) => {
+  const renderStar = () => {
+    let star = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        star.push(<IcStarOn />);
+      } else {
+        star.push(<IcStarOff />);
+      }
+    }
+    return star;
+  };
+
   return (
     <View style={styles.ratingContainer}>
-      <View style={styles.starContainer}>
-        <IcStarOn />
-        <IcStarOn />
-        <IcStarOn />
-        <IcStarOn />
-        <IcStarOff />
-      </View>
-      <Text>{rating}</Text>
+      <View style={styles.starContainer}>{renderStar()}</View>
+      <Number number={rating} type="decimal" />
+      {/* <Text>{rating}</Text> */}
     </View>
   );
 };

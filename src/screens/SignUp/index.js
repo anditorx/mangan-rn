@@ -31,7 +31,6 @@ const SignUp = ({navigation}) => {
   });
 
   const onSubmit = () => {
-    console.log('form :=> ', form);
     dispatch({type: ActionTypes.SET_REGISTER, value: form});
     navigation.navigate('SignUpAddress');
   };
@@ -42,13 +41,10 @@ const SignUp = ({navigation}) => {
       maxHeight: 250,
     };
     launchImageLibrary(options, response => {
-      console.log('Response = ', response);
       if (response.didCancel || response.error) {
-        console.log('User cancelled image picker or Error');
         showToast('Ups!', 'User cancelled image picker or error', 'danger');
       } else {
         const source = {uri: response.assets[0].uri};
-        console.log('response photo : ', response.assets[0].uri);
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
         const dataImage = {

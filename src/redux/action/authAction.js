@@ -39,7 +39,6 @@ export const signUpAction =
               navigation.reset({index: 0, routes: [{name: 'SignUpSuccess'}]});
             })
             .catch(errUpload => {
-              console.log(errUpload);
               showToast('Ups!', errUpload?.response?.data?.message, 'danger');
               navigation.reset({index: 0, routes: [{name: 'SignUpSuccess'}]});
             });
