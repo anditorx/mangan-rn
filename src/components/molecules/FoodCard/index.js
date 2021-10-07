@@ -5,7 +5,7 @@ import {FoodDummy1, IcStarOn, IcStarOff, colors, fonts} from '../../../res';
 
 const FoodCard = ({titleFood, image, onPress, rating}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <Image source={image} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.titleFood}>{titleFood}</Text>

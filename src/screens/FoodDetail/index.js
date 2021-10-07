@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,14 +8,22 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
-import {Rating, Button, Counter} from '../../components';
+import {Rating, Button, Counter, Number} from '../../components';
 import {FoodDummy6, IcBackWhite, colors, fonts} from '../../res';
 
-const FoodDetail = ({navigation}) => {
+const FoodDetail = ({navigation, route}) => {
+  const {params} = route;
+  const [totalItem, setTotalItem] = useState(1);
+  const onCounterChange = value => {
+    console.log('value :=> ', value);
+    setTotalItem(value);
+  };
   return (
     <>
       <StatusBar backgroundColor="transparent" barStyle="dark-content" />
-      <ImageBackground source={FoodDummy6} style={styles.bgImage}>
+      <ImageBackground
+        source={{uri: params.picturePath}}
+        style={styles.bgImage}>
         <SafeAreaView>
           <TouchableOpacity
             style={styles.icBack}
@@ -28,23 +36,20 @@ const FoodDetail = ({navigation}) => {
         <View style={styles.mainContent}>
           <View style={styles.productContainer}>
             <View>
-              <Text style={styles.titleContent}>Title Food</Text>
-              <Rating rating="4.2" />
+              <Text style={styles.titleContent}>{params.name}</Text>
+              <Rating rating={params.rate} />
             </View>
-            <Counter />
+            <Counter onValueChange={onCounterChange} />
           </View>
-          <Text style={styles.desc}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
-          </Text>
+          <Text style={styles.desc}>{params.description}</Text>
           <Text style={styles.label}>Ingredients:</Text>
-          <Text style={styles.desc}>Lorem Ipsum has been the industry's </Text>
+          <Text style={styles.desc}>{params.ingredients} </Text>
         </View>
         <View style={styles.footer}>
           <View style={styles.priceContainer}>
             <Text style={styles.label}>Total Price:</Text>
-            <Text style={styles.price}>Rp 43.000</Text>
+            <Number number={params.price * totalItem} style={styles.price} />
+            {/* <Text style={styles.price}>IDR {params.price * totalItem}</Text> */}
           </View>
           <View style={styles.wrapperButton}>
             <Button

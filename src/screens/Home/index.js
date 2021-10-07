@@ -19,7 +19,8 @@ import {styles} from './styles.js';
 // others
 import {useSelector, useDispatch} from 'react-redux';
 import {getFoodData} from '../../redux/action';
-const Home = () => {
+
+const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const {food} = useSelector(state => state.homeReducer);
   useEffect(() => {
@@ -42,6 +43,7 @@ const Home = () => {
                   image={{uri: itemFood.picturePath}}
                   titleFood={itemFood.name}
                   rating={itemFood.rate}
+                  onPress={() => navigation.navigate('FoodDetail', itemFood)}
                 />
               );
             })}

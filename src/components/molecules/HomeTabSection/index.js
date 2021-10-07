@@ -56,11 +56,11 @@ const NewTaste = () => {
         return (
           <ListItemFood
             key={item.id}
-            onPress={() => navigation.navigate('FoodDetail')}
             image={{uri: item.picturePath}}
             title={item.name}
             price={item.price}
             rating={item.rate}
+            onPress={() => navigation.navigate('FoodDetail', item)}
           />
         );
       })}
@@ -81,7 +81,7 @@ const Popular = () => {
         return (
           <ListItemFood
             key={item.id}
-            onPress={() => navigation.navigate('FoodDetail')}
+            onPress={() => navigation.navigate('FoodDetail', item)}
             image={{uri: item.picturePath}}
             title={item.name}
             price={item.price}
@@ -106,7 +106,7 @@ const Promo = () => {
         return (
           <ListItemFood
             key={item.id}
-            onPress={() => navigation.navigate('FoodDetail')}
+            onPress={() => navigation.navigate('FoodDetail', item)}
             image={{uri: item.picturePath}}
             title={item.name}
             price={item.price}
