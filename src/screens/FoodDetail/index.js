@@ -34,6 +34,7 @@ const FoodDetail = ({navigation, route}) => {
 
     const data = {
       item: {
+        id: params.id,
         name: params.name,
         price: params.price,
         picturePath: params.picturePath,

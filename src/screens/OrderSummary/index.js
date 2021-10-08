@@ -1,10 +1,87 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, SafeAreaView, StatusBar} from 'react-native';
-import {Header, ListItemFood, ItemValue, Button} from '../../components';
+import {
+  Header,
+  ListItemFood,
+  ItemValue,
+  Button,
+  Loading,
+} from '../../components';
 import {FoodDummy1, colors, fonts} from '../../res';
+
+import {WebView} from 'react-native-webview';
+import Axios from 'axios';
+import {getData} from '../../utils';
 
 const OrderSummary = ({navigation, route}) => {
   const {item, transaction, userProfile} = route.params;
+  const [token, setToken] = useState('');
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const [paymentURL, setPaymentURL] = useState('https://reactnative.dev/');
+
+  useEffect(() => {
+    getData('@token').then(res => {
+      console.log('token :', res);
+      setToken(res.value);
+    });
+  }, []);
+
+  const onCheckOut = () => {
+    const data = {
+      food_id: item.id,
+      user_id: userProfile.id,
+      quantity: transaction.totalItem,
+      total: transaction.total,
+      status: 'PENDING',
+    };
+    Axios.post(
+      'http://foodmarket-backend.buildwithangga.id/api/checkout',
+      data,
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+    )
+      .then(res => {
+        console.log('res checkout', res.data);
+        setIsPaymentOpen(true);
+        setPaymentURL(res.data.data.payment_url);
+      })
+      .catch(err => {
+        console.log('err checkout', err);
+      });
+  };
+
+  const onNavChange = state => {
+    console.log('nav :=> ', state);
+    const urlSuccess =
+      'http://foodmarket-backend.buildwithangga.id/midtrans/success?order_id=4996&status_code=201&transaction_status=pending';
+    const titleWeb = 'Laravel';
+
+    if (state.title === titleWeb) {
+      navigation.replace('SuccessOrder');
+    }
+  };
+
+  if (isPaymentOpen) {
+    return (
+      <>
+        <Header
+          onPressIcBack={() => setIsPaymentOpen(false)}
+          title="Payment"
+          subTitle="You deserve better meal"
+        />
+        <WebView
+          source={{uri: paymentURL}}
+          startInLoadingState={true}
+          renderLoading={() => <Loading />}
+          onNavigationStateChange={onNavChange}
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
@@ -56,7 +133,8 @@ const OrderSummary = ({navigation, route}) => {
         <View style={styles.wrapperButton}>
           <Button
             textButton="Checkout Now"
-            onPress={() => navigation.replace('SuccessOrder')}
+            // onPress={() => navigation.replace('SuccessOrder')}
+            onPress={onCheckOut}
           />
         </View>
       </SafeAreaView>
