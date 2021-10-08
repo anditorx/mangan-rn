@@ -3,7 +3,8 @@ import {StyleSheet, Text, View, SafeAreaView, StatusBar} from 'react-native';
 import {Header, ListItemFood, ItemValue, Button} from '../../components';
 import {FoodDummy1, colors, fonts} from '../../res';
 
-const OrderSummary = ({navigation}) => {
+const OrderSummary = ({navigation, route}) => {
+  const {item, transaction, userProfile} = route.params;
   return (
     <>
       <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
@@ -16,31 +17,40 @@ const OrderSummary = ({navigation}) => {
         <View style={styles.content}>
           <Text style={styles.label}>Item Ordered</Text>
           <ListItemFood
-            image={FoodDummy1}
-            title="Title Food"
-            price="36.000"
-            items={6}
+            image={{uri: item.picturePath}}
+            title={item.name}
+            price={item.price}
+            items={transaction.totalItem}
             type="order-summary"
             orderSummary
           />
           <Text style={styles.label}>Details Transaction</Text>
-          <ItemValue label="Title Food" value="IDR 36.000" />
-          <ItemValue label="Delivery" value="IDR 7.000" />
-          <ItemValue label="Tax 10%" value="IDR 3.600" />
           <ItemValue
+            type="currency"
+            label={item.name}
+            value={transaction.totalPrice}
+          />
+          <ItemValue
+            type="currency"
+            label="Delivery"
+            value={transaction.driver}
+          />
+          <ItemValue type="currency" label="Tax 10%" value={transaction.tax} />
+          <ItemValue
+            type="currency"
             label="Total Price"
-            value="IDR 37.600"
+            value={transaction.total}
             valueColor={colors.topaz}
           />
         </View>
 
         <View style={styles.content}>
           <Text style={styles.label}>Deliver to:</Text>
-          <ItemValue label="Name" value="Andito" />
-          <ItemValue label="Phone No" value="085881902847" />
-          <ItemValue label="Address" value="Sentral Alam, Bogor" />
-          <ItemValue label="House No" value="14" />
-          <ItemValue label="City" value="Bogor" />
+          <ItemValue label="Name" value={userProfile.name} />
+          <ItemValue label="Phone No" value={userProfile.phoneNumber} />
+          <ItemValue label="Address" value={userProfile.address} />
+          <ItemValue label="House No" value={userProfile.houseNumber} />
+          <ItemValue label="City" value={userProfile.city} />
         </View>
 
         <View style={styles.wrapperButton}>
