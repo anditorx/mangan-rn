@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -16,8 +16,15 @@ import {
   ProfileTabSection,
 } from '../../components';
 import {colors, fonts, ProfileDummy} from '../../res';
+import {getData} from '../../utils';
 
 const Profile = () => {
+  const [userProfile, setUserProfile] = useState({});
+  useEffect(() => {
+    getData('@userData').then(res => {
+      setUserProfile(res);
+    });
+  }, []);
   return (
     <>
       <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
@@ -25,11 +32,14 @@ const Profile = () => {
         <View style={styles.profileDetail}>
           <View style={styles.wrapperPhoto}>
             <TouchableOpacity style={styles.borderPhoto}>
-              <Image source={ProfileDummy} style={styles.photoContainer} />
+              <Image
+                source={{uri: userProfile.profile_photo_url}}
+                style={styles.photoContainer}
+              />
             </TouchableOpacity>
           </View>
-          <Text style={styles.userFullName}>Andi Rustianto</Text>
-          <Text style={styles.userEmail}>andirusti46@gmail.com</Text>
+          <Text style={styles.userFullName}>{userProfile.name}</Text>
+          <Text style={styles.userEmail}>{userProfile.email}</Text>
         </View>
         <View style={styles.contentTabSection}>
           <ProfileTabSection />

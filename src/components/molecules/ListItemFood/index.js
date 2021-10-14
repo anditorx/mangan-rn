@@ -60,24 +60,29 @@ const ListItemFood = ({
           <>
             <View style={styles.wrapperTextItem}>
               <Text style={styles.title}>{title}</Text>
-              <Text style={styles.price}>
-                {items} items. Rp {price}
-              </Text>
+              <View style={styles.row}>
+                <Text style={styles.price}>{items} items</Text>
+                <View style={styles.dot} />
+                <Number number={price} style={styles.price} />
+              </View>
             </View>
           </>
         );
       case 'past-orders':
         // item list past orders
+        const formatDate = new Date(date).toDateString();
         return (
           <>
             <View style={styles.wrapperTextItem}>
               <Text style={styles.title}>{title}</Text>
-              <Text style={styles.price}>
-                {items} items. Rp {price}
-              </Text>
+              <View style={styles.row}>
+                <Text style={styles.price}>{items} items</Text>
+                <View style={styles.dot} />
+                <Number number={price} style={styles.price} />
+              </View>
             </View>
             <View>
-              <Text style={styles.date}>{date}</Text>
+              <Text style={styles.date}>{formatDate}</Text>
               <Text style={styles.status}>{status}</Text>
             </View>
           </>
@@ -148,5 +153,17 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: fonts.Regular,
     color: colors.red,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // justifyContent: 'space-between',
+  },
+  dot: {
+    height: 3,
+    width: 3,
+    borderRadius: 3,
+    backgroundColor: colors.black,
+    marginHorizontal: 5,
   },
 });

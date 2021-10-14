@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   Header,
   TextInput,
@@ -16,16 +17,23 @@ import {
   EmptyOrder,
   OrderTabSection,
 } from '../../components';
+import {getOrders} from '../../redux/action';
 import {colors, IlEmptyOrder} from '../../res';
 import {styles} from './styles.js';
 
 const Order = ({navigation}) => {
   const [isEmpty, setIsEmpty] = useState(false);
+  const dispatch = useDispatch();
+  const {orders} = useSelector(state => state.orderReducer);
+  console.log('orders: => ', orders);
+  useEffect(() => {
+    dispatch(getOrders());
+  }, [dispatch]);
   return (
     <>
       <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
       <SafeAreaView style={styles.screen}>
-        {isEmpty ? (
+        {orders.length < 1 ? (
           <EmptyOrder />
         ) : (
           <View style={styles.content}>

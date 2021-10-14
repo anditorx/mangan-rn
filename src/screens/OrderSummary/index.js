@@ -34,23 +34,25 @@ const OrderSummary = ({navigation, route}) => {
       total: transaction.total,
       status: 'PENDING',
     };
-    Axios.post(
-      'http://foodmarket-backend.buildwithangga.id/api/checkout',
-      data,
-      {
-        headers: {
-          Authorization: token,
+    getData('@token').then(res => {
+      Axios.post(
+        'http://foodmarket-backend.buildwithangga.id/api/checkout',
+        data,
+        {
+          headers: {
+            Authorization: res.value,
+          },
         },
-      },
-    )
-      .then(res => {
-        console.log('res checkout', res.data);
-        setIsPaymentOpen(true);
-        setPaymentURL(res.data.data.payment_url);
-      })
-      .catch(err => {
-        console.log('err checkout', err);
-      });
+      )
+        .then(res => {
+          console.log('res checkout', res.data);
+          setIsPaymentOpen(true);
+          setPaymentURL(res.data.data.payment_url);
+        })
+        .catch(err => {
+          console.log('err checkout', err);
+        });
+    });
   };
 
   const onNavChange = state => {
@@ -60,7 +62,7 @@ const OrderSummary = ({navigation, route}) => {
     const titleWeb = 'Laravel';
 
     if (state.title === titleWeb) {
-      navigation.replace('SuccessOrder');
+      navigation.reset({index: 0, routes: [{name: 'SuccessOrder'}]});
     }
   };
 

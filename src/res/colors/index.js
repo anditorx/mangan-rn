@@ -10,7 +10,7 @@ const mainColors = {
   peace: '#a4b0be',
   superLightGrey: '#f1f2f6',
   topaz: '#0fb9b1',
-  red: 'red',
+  red: '#D9435E',
 };
 
 export const colors = {

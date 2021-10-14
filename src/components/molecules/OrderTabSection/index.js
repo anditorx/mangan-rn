@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   View,
@@ -25,6 +25,9 @@ import {
   fonts,
   strings,
 } from '../../../res';
+import {useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
+import {getInProgress, getPastOrders} from '../../../redux/action/orderAction';
 
 const renderTabBar = props => (
   <TabBar
@@ -40,136 +43,57 @@ const renderTabBar = props => (
 
 const InProgress = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {inProgress} = useSelector(state => state.orderReducer);
+  useEffect(() => {
+    dispatch(getInProgress());
+  }, [dispatch]);
   return (
     <View style={styles.wrapperItem}>
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy4}
-        title="Garapcha Coffee"
-        price="35.000"
-        rating="4.3"
-        inProgress
-        items={3}
-        type="in-progress"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy3}
-        title="Rominelo Soup"
-        price="47.000"
-        rating="4.1"
-        inProgress
-        items={3}
-        type="in-progress"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy2}
-        title="Morrey Manggo Club"
-        price="47.000"
-        rating="4.6"
-        inProgress
-        items={3}
-        type="in-progress"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-        inProgress
-        items={3}
-        type="in-progress"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-        inProgress
-        items={3}
-        type="in-progress"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-        inProgress
-        items={3}
-        type="in-progress"
-      />
+      {inProgress.map(order => {
+        return (
+          <ListItemFood
+            key={order.id}
+            onPress={() => navigation.navigate('OrderDetail', order)}
+            image={{uri: order.food.picturePath}}
+            title={order.food.name}
+            price={order.total}
+            rating={order.food.rate}
+            inProgress
+            items={order.quantity}
+            type="in-progress"
+          />
+        );
+      })}
     </View>
   );
 };
 const PastOrders = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {pastOrders} = useSelector(state => state.orderReducer);
+
+  useEffect(() => {
+    dispatch(getPastOrders());
+  }, [dispatch]);
   return (
     <ScrollView style={styles.wrapperItem} showsVerticalScrollIndicator={false}>
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy4}
-        title="Garapcha Coffee"
-        price="35.000"
-        rating="4.3"
-        type="past-orders"
-        date="21 Jun 2021"
-        items={3}
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy3}
-        title="Rominelo Soup"
-        price="47.000"
-        rating="4.1"
-        type="past-orders"
-        date="21 Jun 2021"
-        items={3}
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy2}
-        title="Morrey Manggo Club"
-        price="47.000"
-        rating="4.6"
-        type="past-orders"
-        date="21 Jun 2021"
-        items={3}
-        status="Canceled"
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-        type="past-orders"
-        date="21 Jun 2021"
-        items={3}
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-        type="past-orders"
-        date="21 Jun 2021"
-        items={3}
-      />
-      <ListItemFood
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy1}
-        title="Orca Hompimpa Fruit"
-        price="27.000"
-        rating="4.2"
-        type="past-orders"
-        date="21 Jun 2021"
-        items={3}
-      />
+      {pastOrders.map(order => {
+        return (
+          <ListItemFood
+            key={order.id}
+            onPress={() => navigation.navigate('OrderDetail', order)}
+            image={{uri: order.food.picturePath}}
+            title={order.food.name}
+            price={order.total}
+            rating={order.food.rate}
+            type="past-orders"
+            date={order.created_at}
+            items={order.quantity}
+            status={order.status}
+          />
+        );
+      })}
     </ScrollView>
   );
 };

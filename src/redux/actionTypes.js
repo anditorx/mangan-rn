@@ -13,3 +13,8 @@ export const SET_FOOD = 'SET_FOOD';
 export const SET_NEW_TASTE = 'SET_NEW_TASTE';
 export const SET_POPULAR = 'SET_POPULAR';
 export const SET_RECOMMENDED = 'SET_RECOMMENDED';
+
+// order
+export const SET_ORDER = 'SET_ORDER';
+export const SET_ORDER_IN_PROGRESS = 'SET_ORDER_IN_PROGRESS';
+export const SET_ORDER_PAST_ORDERS = 'SET_ORDER_PAST_ORDERS';
